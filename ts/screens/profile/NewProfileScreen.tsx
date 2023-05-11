@@ -3,10 +3,6 @@ import { IconProps } from "react-native-vector-icons/Icon";
 import { List as NBList } from "native-base";
 import { useDispatch } from "react-redux";
 import * as pot from "@pagopa/ts-commons/lib/pot";
-import * as O from "fp-ts/lib/Option";
-import * as E from "fp-ts/lib/Either";
-import * as t from "io-ts";
-import { pipe } from "fp-ts/lib/function";
 
 import { emptyContextualHelp } from "../../utils/emptyContextualHelp";
 import ScreenContent from "../../components/screens/ScreenContent";

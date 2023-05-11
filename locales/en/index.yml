@@ -448,6 +448,7 @@ profile:
       email: Email address
       need_validate: To be validated
       nameSurname: Name and surname
+      fiscalCode: Fiscal code
       spid:
         headerTitle: SPID data
         email: SPID email

@@ -39,6 +39,7 @@ import {
 } from "../../features/lollipop/store/reducers/lollipop";
 import { startupLoadSuccess } from "../../store/actions/startup";
 import { StartupStatusEnum } from "../../store/reducers/startup";
+import { watchLoadNewProfileSaga } from "../newProfile";
 
 const aSessionToken = "a_session_token" as SessionToken;
 
@@ -199,6 +200,8 @@ describe("initializeApplicationSaga", () => {
       )
       .next()
       .fork(watchProfileUpsertRequestsSaga, undefined)
+      .next()
+      .fork(watchLoadNewProfileSaga, undefined)
       .next()
       .fork(watchProfile, undefined)
       .next()

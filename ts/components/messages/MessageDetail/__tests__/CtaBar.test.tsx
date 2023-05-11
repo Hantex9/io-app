@@ -106,7 +106,7 @@ describe("the `CtaBar` component", () => {
 en:
     cta_1: 
         text: "DON'T PANIC!"
-        action: "ioit://PROFILE_MAIN"
+        action: "ioit://NEW_PROFILE_MAIN"
 ---
                       ` as any;
 

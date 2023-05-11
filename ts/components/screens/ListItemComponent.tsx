@@ -1,4 +1,5 @@
 import { ListItem } from "native-base";
+import { SvgProps } from "react-native-svg";
 import * as React from "react";
 import {
   Text,
@@ -50,6 +51,7 @@ type Props = Readonly<{
   accessibilityRole?: AccessibilityRole;
   accessibilityState?: AccessibilityState;
   testID?: string;
+  leftIcon?: React.FC<SvgProps>;
 }>;
 const DEFAULT_ICON_SIZE = 24;
 const PADDING_R_DESCRIPTION = 24;
@@ -81,10 +83,14 @@ const styles = StyleSheet.create({
   },
   alignToStart: {
     alignSelf: "flex-start"
+  },
+  rightIcon: {
+    paddingRight: customVariables.spacerWidth
   }
 });
 
 export default class ListItemComponent extends React.Component<Props> {
+  // eslint-disable-next-line sonarjs/cognitive-complexity
   public render() {
     const ICON_SIZE = this.props.iconSize || DEFAULT_ICON_SIZE;
     const showDefaultIcon =
@@ -101,6 +107,11 @@ export default class ListItemComponent extends React.Component<Props> {
         accessibilityRole={this.props.accessibilityRole}
         testID={this.props.testID}
       >
+        {this.props.leftIcon && (
+          <View style={styles.rightIcon}>
+            <this.props.leftIcon width={ICON_SIZE} height={ICON_SIZE} />
+          </View>
+        )}
         <View style={styles.flexColumn}>
           <View style={IOStyles.rowSpaceBetween}>
             <View style={styles.flexRow2}>

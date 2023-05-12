@@ -17,6 +17,15 @@ export const isStrictNone = <T, E>(p: pot.Pot<T, E>): boolean =>
 export const isStrictSome = <T, E>(p: pot.Pot<T, E>): p is Some<T> =>
   p.kind === "PotSome";
 
+/**
+ * A function that returns a printable value from a pot;
+ *
+ * *A __printable value__ is a value that can be printed in a UI, so it is a string, a number or a boolean*
+ * @param targetPot The pot from which the value is extracted
+ * @param value The key of the value to be printed
+ * @param fallbackValue The string value to be returned if the pot is not a `pot.Some`
+ * @returns
+ */
 export const getPrintableValueFromPot = <T, E, K extends keyof T>(
   targetPot: pot.Pot<T, E>,
   value: K,

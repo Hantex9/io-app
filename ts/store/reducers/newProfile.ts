@@ -11,6 +11,9 @@ export type NewProfileState = pot.Pot<InitializedProfile, NetworkError>;
 
 const INITIAL_STATE: NewProfileState = pot.none;
 
+/**
+ * Selector to get the new profile state
+ */
 export const newProfileSelector = (state: GlobalState): NewProfileState =>
   state.newProfile;
 

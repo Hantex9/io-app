@@ -8,6 +8,10 @@ import { loadNewProfile } from "../store/actions/newProfile";
 import { readablePrivacyReport } from "../utils/reporters";
 import I18n from "../i18n";
 
+/**
+ * Saga that loads the new profile
+ * @param getProfile the backend client function to call
+ */
 export function* loadNewProfileSaga(
   getProfile: ReturnType<typeof BackendClient>["getProfile"]
 ) {

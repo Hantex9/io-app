@@ -39,10 +39,16 @@ const NewProfileScreen = () => {
     loadProfile();
   });
 
+  /**
+   * Function that start fetch the profile informations
+   */
   const loadProfile = () => {
     dispatch(loadNewProfile.request());
   };
 
+  /**
+   * Wrapper function of `getPrintableValueFromPot` to get the value from the pot with a fallback value
+   */
   const getValueFromNewProfilePot = (value: keyof InitializedProfile) =>
     getPrintableValueFromPot(
       newProfilePot,
@@ -50,6 +56,9 @@ const NewProfileScreen = () => {
       I18n.t("global.remoteStates.notAvailable")
     );
 
+  /**
+   * Wrapper component to show the loading view
+   */
   const LoadingView = () => (
     <LoadingErrorComponent
       isLoading
@@ -58,6 +67,9 @@ const NewProfileScreen = () => {
     />
   );
 
+  /**
+   * Wrapper component to show the error view with the retry button to reload the profile
+   */
   const ErrorView = () => (
     <GenericErrorComponent onRetry={() => loadProfile()} />
   );

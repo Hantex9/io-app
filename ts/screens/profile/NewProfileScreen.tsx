@@ -24,6 +24,8 @@ import { InitializedProfile } from "../../../definitions/backend/InitializedProf
 import { getPrintableValueFromPot } from "../../utils/pot";
 import { PreferencesListItem } from "../../components/PreferencesListItem";
 import { RemoteSwitch } from "../../components/core/selection/RemoteSwitch";
+import { loadUserDataProcessing } from "../../store/actions/userDataProcessing";
+import { UserDataProcessingChoiceEnum } from "../../../definitions/backend/UserDataProcessingChoice";
 import { isUserDataProcessingDeleteSelector } from "../../store/reducers/userDataProcessing";
 
 const newProfileScreenIconProps: IconProps = {
@@ -50,6 +52,9 @@ const NewProfileScreen = () => {
    */
   const loadProfile = () => {
     dispatch(loadNewProfile.request());
+    dispatch(
+      loadUserDataProcessing.request(UserDataProcessingChoiceEnum.DELETE)
+    );
   };
 
   /**

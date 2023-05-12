@@ -1,5 +1,9 @@
 import * as pot from "@pagopa/ts-commons/lib/pot";
+import * as O from "fp-ts/lib/Option";
+import { pipe } from "fp-ts/lib/function";
+import { createSelector } from "reselect";
 import { getType } from "typesafe-actions";
+import { UserDataProcessingStatusEnum } from "../../../definitions/backend/UserDataProcessingStatus";
 import { UserDataProcessing } from "../../../definitions/backend/UserDataProcessing";
 import { UserDataProcessingChoiceEnum } from "../../../definitions/backend/UserDataProcessingChoice";
 import { computedProp } from "../../types/utils";
@@ -95,3 +99,19 @@ export default userDataProcessingReducer;
 // Selectors
 export const userDataProcessingSelector = (state: GlobalState) =>
   state.userDataProcessing;
+
+export const isUserDataProcessingDeleteSelector = createSelector(
+  [userDataProcessingSelector],
+  (userDataProcessing): pot.Pot<boolean, Error> =>
+    pot.map(userDataProcessing.DELETE, userDataProcessingDelete =>
+      pipe(
+        userDataProcessingDelete,
+        O.fromNullable,
+        O.fold(
+          () => false,
+          dataProcessing =>
+            dataProcessing.status === UserDataProcessingStatusEnum.PENDING
+        )
+      )
+    )
+);

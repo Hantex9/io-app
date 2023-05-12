@@ -22,6 +22,9 @@ import GenericErrorComponent from "../../components/screens/GenericErrorComponen
 import { useIOSelector } from "../../store/hooks";
 import { InitializedProfile } from "../../../definitions/backend/InitializedProfile";
 import { getPrintableValueFromPot } from "../../utils/pot";
+import { PreferencesListItem } from "../../components/PreferencesListItem";
+import { RemoteSwitch } from "../../components/core/selection/RemoteSwitch";
+import { isUserDataProcessingDeleteSelector } from "../../store/reducers/userDataProcessing";
 
 const newProfileScreenIconProps: IconProps = {
   name: "io-profilo",
@@ -34,6 +37,9 @@ const NewProfileScreen = () => {
   const dispatch = useDispatch();
 
   const newProfilePot = useIOSelector(newProfileSelector);
+  const isUserDataProcessingDeletePot = useIOSelector(
+    isUserDataProcessingDeleteSelector
+  );
 
   useOnFirstRender(() => {
     loadProfile();
@@ -98,8 +104,12 @@ const NewProfileScreen = () => {
           subTitle={getValueFromNewProfilePot("email")}
           leftIcon={EmailIcon}
           hideIcon
-          isLastItem
           testID="email"
+        />
+        <PreferencesListItem
+          title={I18n.t("profile.data.deletion.title")}
+          description={I18n.t("profile.data.deletion.description")}
+          rightElement={<RemoteSwitch value={isUserDataProcessingDeletePot} />}
         />
       </NBList>
     </ScreenContent>

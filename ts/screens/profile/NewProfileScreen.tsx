@@ -29,10 +29,10 @@ const newProfileScreenIconProps: IconProps = {
   size: HEADER_ICON_HEIGHT
 };
 
-const screenTitle = I18n.t("profile.main.title");
-
 const NewProfileScreen = () => {
   const dispatch = useDispatch();
+
+  const screenTitle = I18n.t("profile.main.title");
 
   const newProfilePot = useIOSelector(newProfileSelector);
 

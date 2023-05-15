@@ -37,6 +37,8 @@ import UADONATION_ROUTES from "../features/uaDonations/navigation/routes";
 import { UAWebViewScreen } from "../features/uaDonations/screens/UAWebViewScreen";
 import { ZendeskStackNavigator } from "../features/zendesk/navigation/navigator";
 import ZENDESK_ROUTES from "../features/zendesk/navigation/routes";
+import { ProfileDeletionRoutes } from "../screens/profile/profile-deletion/navigation/routes";
+import { ProfileDeletionStackNavigator } from "../screens/profile/profile-deletion/navigation/ProfileDeletionStackNavigator";
 import { useIOSelector } from "../store/hooks";
 import {
   isCdcEnabledSelector,
@@ -130,6 +132,10 @@ const AuthenticatedStackNavigator = () => {
       <Stack.Screen
         name={UADONATION_ROUTES.WEBVIEW}
         component={UAWebViewScreen}
+      />
+      <Stack.Screen
+        name={ProfileDeletionRoutes.PROFILE_DELETION_MAIN}
+        component={ProfileDeletionStackNavigator}
       />
 
       {isFimsEnabled && (

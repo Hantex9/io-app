@@ -38,6 +38,8 @@ import {
   IDPayUnsubscriptionParamsList,
   IDPayUnsubscriptionRoutes
 } from "../../features/idpay/unsubscription/navigation/navigator";
+import { ProfileDeletionRoutes } from "../../screens/profile/profile-deletion/navigation/routes";
+import { ProfileDeletionParamsList } from "../../screens/profile/profile-deletion/navigation/params";
 import { AuthenticationParamsList } from "./AuthenticationParamsList";
 import { MainTabParamsList } from "./MainTabParamsList";
 import { MessagesParamsList } from "./MessagesParamsList";
@@ -77,6 +79,8 @@ export type AppParamsList = {
   [IDPayUnsubscriptionRoutes.IDPAY_UNSUBSCRIPTION_MAIN]:
     | NavigatorScreenParams<IDPayUnsubscriptionParamsList>
     | IDPayUnsubscriptionNavigatorParams;
+
+  [ProfileDeletionRoutes.PROFILE_DELETION_MAIN]: NavigatorScreenParams<ProfileDeletionParamsList>;
 };
 
 /**

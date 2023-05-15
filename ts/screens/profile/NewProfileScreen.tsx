@@ -1,4 +1,6 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/core";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { IconProps } from "react-native-vector-icons/Icon";
 import { List as NBList } from "native-base";
 import { useDispatch } from "react-redux";
@@ -27,6 +29,8 @@ import { RemoteSwitch } from "../../components/core/selection/RemoteSwitch";
 import { loadUserDataProcessing } from "../../store/actions/userDataProcessing";
 import { UserDataProcessingChoiceEnum } from "../../../definitions/backend/UserDataProcessingChoice";
 import { isUserDataProcessingDeleteSelector } from "../../store/reducers/userDataProcessing";
+import { ProfileDeletionRoutes } from "./profile-deletion/navigation/routes";
+import { ProfileDeletionParamsList } from "./profile-deletion/navigation/params";
 
 const newProfileScreenIconProps: IconProps = {
   name: "io-profilo",
@@ -37,6 +41,8 @@ const screenTitle = I18n.t("profile.main.title");
 
 const NewProfileScreen = () => {
   const dispatch = useDispatch();
+  const navigation =
+    useNavigation<StackNavigationProp<ProfileDeletionParamsList>>();
 
   const newProfilePot = useIOSelector(newProfileSelector);
   const isUserDataProcessingDeletePot = useIOSelector(
@@ -66,6 +72,12 @@ const NewProfileScreen = () => {
       value,
       I18n.t("global.remoteStates.notAvailable")
     );
+
+  const handleSwitchValueChange = (value: boolean) => {
+    if (value) {
+      navigation.navigate(ProfileDeletionRoutes.PROFILE_DELETION_MAIN);
+    }
+  };
 
   /**
    * Wrapper component to show the loading view
@@ -114,7 +126,12 @@ const NewProfileScreen = () => {
         <PreferencesListItem
           title={I18n.t("profile.data.deletion.title")}
           description={I18n.t("profile.data.deletion.description")}
-          rightElement={<RemoteSwitch value={isUserDataProcessingDeletePot} />}
+          rightElement={
+            <RemoteSwitch
+              value={isUserDataProcessingDeletePot}
+              onValueChange={handleSwitchValueChange}
+            />
+          }
         />
       </NBList>
     </ScreenContent>

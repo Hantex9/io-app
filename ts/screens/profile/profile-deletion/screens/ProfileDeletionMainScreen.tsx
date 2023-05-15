@@ -15,15 +15,14 @@ import {
 import ScreenContent from "../../../../components/screens/ScreenContent";
 import { IOStyles } from "../../../../components/core/variables/IOStyles";
 import { InfoBox } from "../../../../components/box/InfoBox";
-import { Label } from "../../../../components/core/typography/Label";
 import { IOColors } from "../../../../components/core/variables/IOColors";
 import { Body } from "../../../../components/core/typography/Body";
 import { H4 } from "../../../../components/core/typography/H4";
 
-const screenTitle = I18n.t("profile.delete.title");
-
 const ProfileDeletionMainScreen = () => {
   const navigation = useNavigation();
+
+  const screenTitle = I18n.t("profile.delete.title");
 
   const cancelButton = cancelButtonProps(
     () => navigation.goBack(),

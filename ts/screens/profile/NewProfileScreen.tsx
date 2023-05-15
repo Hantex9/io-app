@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/core";
 import { StackNavigationProp } from "@react-navigation/stack";
+import { View } from "react-native";
 import { IconProps } from "react-native-vector-icons/Icon";
-import { List as NBList } from "native-base";
 import { useDispatch } from "react-redux";
 import * as pot from "@pagopa/ts-commons/lib/pot";
 
@@ -12,25 +12,21 @@ import I18n from "../../i18n";
 import TopScreenComponent from "../../components/screens/TopScreenComponent";
 import { HEADER_ICON_HEIGHT } from "../../utils/constants";
 import { useOnFirstRender } from "../../utils/hooks/useOnFirstRender";
-import ListItemComponent from "../../components/screens/ListItemComponent";
 
-import NameSurnameIcon from "../../../img/assistance/nameSurname.svg";
-import FiscalCodeIcon from "../../../img/assistance/card.svg";
-import EmailIcon from "../../../img/assistance/email.svg";
 import { loadNewProfile } from "../../store/actions/newProfile";
 import { newProfileSelector } from "../../store/reducers/newProfile";
 import { LoadingErrorComponent } from "../../features/bonus/bonusVacanze/components/loadingErrorScreen/LoadingErrorComponent";
 import GenericErrorComponent from "../../components/screens/GenericErrorComponent";
 import { useIOSelector } from "../../store/hooks";
-import { InitializedProfile } from "../../../definitions/backend/InitializedProfile";
-import { getPrintableValueFromPot } from "../../utils/pot";
 import { PreferencesListItem } from "../../components/PreferencesListItem";
 import { RemoteSwitch } from "../../components/core/selection/RemoteSwitch";
 import { loadUserDataProcessing } from "../../store/actions/userDataProcessing";
 import { UserDataProcessingChoiceEnum } from "../../../definitions/backend/UserDataProcessingChoice";
 import { isUserDataProcessingDeleteSelector } from "../../store/reducers/userDataProcessing";
+import { IOStyles } from "../../components/core/variables/IOStyles";
 import { ProfileDeletionRoutes } from "./profile-deletion/navigation/routes";
 import { ProfileDeletionParamsList } from "./profile-deletion/navigation/params";
+import ProfileDetailsList from "./components/ProfileDetailsList";
 
 const newProfileScreenIconProps: IconProps = {
   name: "io-profilo",
@@ -63,16 +59,6 @@ const NewProfileScreen = () => {
     );
   };
 
-  /**
-   * Wrapper function of `getPrintableValueFromPot` to get the value from the pot with a fallback value
-   */
-  const getValueFromNewProfilePot = (value: keyof InitializedProfile) =>
-    getPrintableValueFromPot(
-      newProfilePot,
-      value,
-      I18n.t("global.remoteStates.notAvailable")
-    );
-
   const handleSwitchValueChange = (value: boolean) => {
     if (value) {
       navigation.navigate(ProfileDeletionRoutes.PROFILE_DELETION_MAIN);
@@ -99,30 +85,8 @@ const NewProfileScreen = () => {
 
   const ProfileContentView = () => (
     <ScreenContent iconFont={newProfileScreenIconProps} title={screenTitle}>
-      <NBList withContentLateralPadding>
-        <ListItemComponent
-          title={I18n.t("profile.data.list.nameSurname")}
-          subTitle={`${getValueFromNewProfilePot(
-            "name"
-          )} ${getValueFromNewProfilePot("family_name")}`}
-          leftIcon={NameSurnameIcon}
-          hideIcon
-          testID="nameSurname"
-        />
-        <ListItemComponent
-          title={I18n.t("profile.data.list.fiscalCode")}
-          subTitle={getValueFromNewProfilePot("fiscal_code")}
-          leftIcon={FiscalCodeIcon}
-          hideIcon
-          testID="fiscalCode"
-        />
-        <ListItemComponent
-          title={I18n.t("profile.data.list.email")}
-          subTitle={getValueFromNewProfilePot("email")}
-          leftIcon={EmailIcon}
-          hideIcon
-          testID="email"
-        />
+      <View style={IOStyles.horizontalContentPadding}>
+        <ProfileDetailsList profile={newProfilePot} />
         <PreferencesListItem
           title={I18n.t("profile.data.deletion.title")}
           description={I18n.t("profile.data.deletion.description")}
@@ -133,7 +97,7 @@ const NewProfileScreen = () => {
             />
           }
         />
-      </NBList>
+      </View>
     </ScreenContent>
   );
 

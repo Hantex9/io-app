@@ -255,6 +255,11 @@ inbox:
   disableButton: Disable Inbox
   enableCallToActionDescription: Enable the inbox to view messages
 profile:
+  delete:
+    title: Delete profile
+    main: 
+      title: Request delete profile
+      description: "Proceeding with the profile deletion request, you will lose access to all IO services and features.\n\nIf you want to continue, confirm your request and wait for the confirmation that the profile has been deleted."
   fiscalCode:
     accessibility:
       unavailable: Unavailable

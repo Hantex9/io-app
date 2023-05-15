@@ -1,6 +1,6 @@
 import React from "react";
 import { IconProps } from "react-native-vector-icons/Icon";
-import { List as NBList } from "native-base";
+import { ScrollView } from "react-native";
 import { useDispatch } from "react-redux";
 import * as pot from "@pagopa/ts-commons/lib/pot";
 
@@ -22,6 +22,7 @@ import GenericErrorComponent from "../../components/screens/GenericErrorComponen
 import { useIOSelector } from "../../store/hooks";
 import { InitializedProfile } from "../../../definitions/backend/InitializedProfile";
 import { getPrintableValueFromPot } from "../../utils/pot";
+import { IOStyles } from "../../components/core/variables/IOStyles";
 
 const newProfileScreenIconProps: IconProps = {
   name: "io-profilo",
@@ -76,7 +77,7 @@ const NewProfileScreen = () => {
 
   const ProfileContentView = () => (
     <ScreenContent iconFont={newProfileScreenIconProps} title={screenTitle}>
-      <NBList withContentLateralPadding>
+      <ScrollView style={IOStyles.horizontalContentPadding}>
         <ListItemComponent
           title={I18n.t("profile.data.list.nameSurname")}
           subTitle={`${getValueFromNewProfilePot(
@@ -101,7 +102,7 @@ const NewProfileScreen = () => {
           isLastItem
           testID="email"
         />
-      </NBList>
+      </ScrollView>
     </ScreenContent>
   );
 

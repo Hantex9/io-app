@@ -11,7 +11,7 @@ import ServiceTabIcon from "../components/ServiceTabIcon";
 import WalletTabIcon from "../components/WalletTabIcon";
 import I18n from "../i18n";
 import PaginatedMessagesHomeScreen from "../screens/messages/MessagesHomeScreen";
-import ProfileMainScreen from "../screens/profile/ProfileMainScreen";
+import NewProfileMainScreen from "../screens/profile/NewProfileScreen";
 import ServicesHomeScreen from "../screens/services/ServicesHomeScreen";
 import WalletHomeScreen from "../screens/wallet/WalletHomeScreen";
 import { useIOSelector } from "../store/hooks";
@@ -97,8 +97,8 @@ export const MainTabNavigator = () => {
           }}
         />
         <Tab.Screen
-          name={ROUTES.PROFILE_MAIN}
-          component={ProfileMainScreen}
+          name={ROUTES.NEW_PROFILE_MAIN}
+          component={NewProfileMainScreen}
           options={{
             title: I18n.t("global.navigator.profile"),
             tabBarIcon: ({ color }) => <ProfileTabIcon color={color} />

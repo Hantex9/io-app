@@ -29,6 +29,7 @@ import { UserDataProcessingState } from "./userDataProcessing";
 import { UserMetadataState } from "./userMetadata";
 import { WalletState } from "./wallet";
 import { StartupState } from "./startup";
+import { NewProfileState } from "./newProfile";
 
 export type GlobalState = Readonly<{
   appState: AppState;
@@ -60,6 +61,7 @@ export type GlobalState = Readonly<{
   assistanceTools: AssistanceToolsState;
   startup: StartupState;
   lollipop: PersistedLollipopState;
+  newProfile: NewProfileState;
 }>;
 
 export type PersistedGlobalState = GlobalState & PersistPartial;

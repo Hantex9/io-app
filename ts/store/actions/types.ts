@@ -57,6 +57,7 @@ import { UserMetadataActions } from "./userMetadata";
 import { WalletActions } from "./wallet";
 import { OutcomeCodeActions } from "./wallet/outcomeCode";
 import { StartupActions } from "./startup";
+import { NewProfileActions } from "./newProfile";
 
 export type Action =
   | AnalyticsActions
@@ -106,7 +107,8 @@ export type Action =
   | StartupActions
   | FciActions
   | IDPayActions
-  | LollipopActions;
+  | LollipopActions
+  | NewProfileActions;
 
 export type Dispatch = DispatchAPI<Action>;
 

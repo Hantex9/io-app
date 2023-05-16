@@ -155,6 +155,7 @@ import {
   keychainError
 } from "./../store/storages/keychain";
 import { watchMessagePrecondition } from "./messages/watchMessagePrecondition";
+import { watchLoadNewProfileSaga } from "./newProfile";
 
 const WAIT_INITIALIZE_SAGA = 5000 as Millisecond;
 const navigatorPollingTime = 125 as Millisecond;
@@ -346,6 +347,9 @@ export function* initializeApplicationSaga(): Generator<
     watchProfileUpsertRequestsSaga,
     backendClient.createOrUpdateProfile
   );
+
+  // Start watching for new profile load requests
+  yield* fork(watchLoadNewProfileSaga, backendClient.getProfile);
 
   // Start watching when profile is successfully loaded
   yield* fork(watchProfile, backendClient.startEmailValidationProcess);

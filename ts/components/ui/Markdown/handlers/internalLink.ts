@@ -38,7 +38,7 @@ const routesToNavigationLink: Record<string, string> = {
   [ROUTES.PROFILE_PREFERENCES_HOME]: "/profile/preferences",
   [ROUTES.WALLET_HOME]: "/main/wallet",
   [ROUTES.SERVICES_HOME]: "/main/services",
-  [ROUTES.PROFILE_MAIN]: "/main/profile",
+  [ROUTES.NEW_PROFILE_MAIN]: "/main/new-profile",
   [ROUTES.PROFILE_PRIVACY]: "/profile/privacy",
   [ROUTES.PROFILE_PRIVACY_MAIN]: "/profile/privacy-main",
   [ROUTES.PAYMENTS_HISTORY_SCREEN]: "/wallet/payments-history",

@@ -22,6 +22,11 @@ import GenericErrorComponent from "../../components/screens/GenericErrorComponen
 import { useIOSelector } from "../../store/hooks";
 import { InitializedProfile } from "../../../definitions/backend/InitializedProfile";
 import { getPrintableValueFromPot } from "../../utils/pot";
+import { PreferencesListItem } from "../../components/PreferencesListItem";
+import { RemoteSwitch } from "../../components/core/selection/RemoteSwitch";
+import { loadUserDataProcessing } from "../../store/actions/userDataProcessing";
+import { UserDataProcessingChoiceEnum } from "../../../definitions/backend/UserDataProcessingChoice";
+import { isUserDataProcessingDeleteSelector } from "../../store/reducers/userDataProcessing";
 import { IOStyles } from "../../components/core/variables/IOStyles";
 
 const newProfileScreenIconProps: IconProps = {
@@ -35,6 +40,9 @@ const NewProfileScreen = () => {
   const screenTitle = I18n.t("profile.main.title");
 
   const newProfilePot = useIOSelector(newProfileSelector);
+  const isUserDataProcessingDeletePot = useIOSelector(
+    isUserDataProcessingDeleteSelector
+  );
 
   useOnFirstRender(() => {
     loadProfile();
@@ -45,6 +53,9 @@ const NewProfileScreen = () => {
    */
   const loadProfile = () => {
     dispatch(loadNewProfile.request());
+    dispatch(
+      loadUserDataProcessing.request(UserDataProcessingChoiceEnum.DELETE)
+    );
   };
 
   /**
@@ -99,8 +110,12 @@ const NewProfileScreen = () => {
           subTitle={getValueFromNewProfilePot("email")}
           leftIcon={EmailIcon}
           hideIcon
-          isLastItem
           testID="email"
+        />
+        <PreferencesListItem
+          title={I18n.t("profile.data.deletion.title")}
+          description={I18n.t("profile.data.deletion.description")}
+          rightElement={<RemoteSwitch value={isUserDataProcessingDeletePot} />}
         />
       </ScrollView>
     </ScreenContent>

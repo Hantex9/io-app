@@ -444,6 +444,9 @@ profile:
   data:
     title: I tuoi dati
     subtitle: Qui trovi i tuoi dati anagrafici e di contatto utilizzati da app IO
+    deletion:
+      title: Elimina profilo
+      description: Abilita questa opzione per eliminare il profilo e tutti i tuoi dati dall'app IO.
     list:
       email: Indirizzo email
       need_validate: Da validare

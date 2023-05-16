@@ -1,6 +1,6 @@
 import React from "react";
 import { IconProps } from "react-native-vector-icons/Icon";
-import { List as NBList } from "native-base";
+import { ScrollView } from "react-native";
 import { useDispatch } from "react-redux";
 import * as pot from "@pagopa/ts-commons/lib/pot";
 
@@ -27,16 +27,17 @@ import { RemoteSwitch } from "../../components/core/selection/RemoteSwitch";
 import { loadUserDataProcessing } from "../../store/actions/userDataProcessing";
 import { UserDataProcessingChoiceEnum } from "../../../definitions/backend/UserDataProcessingChoice";
 import { isUserDataProcessingDeleteSelector } from "../../store/reducers/userDataProcessing";
+import { IOStyles } from "../../components/core/variables/IOStyles";
 
 const newProfileScreenIconProps: IconProps = {
   name: "io-profilo",
   size: HEADER_ICON_HEIGHT
 };
 
-const screenTitle = I18n.t("profile.main.title");
-
 const NewProfileScreen = () => {
   const dispatch = useDispatch();
+
+  const screenTitle = I18n.t("profile.main.title");
 
   const newProfilePot = useIOSelector(newProfileSelector);
   const isUserDataProcessingDeletePot = useIOSelector(
@@ -87,7 +88,7 @@ const NewProfileScreen = () => {
 
   const ProfileContentView = () => (
     <ScreenContent iconFont={newProfileScreenIconProps} title={screenTitle}>
-      <NBList withContentLateralPadding>
+      <ScrollView style={IOStyles.horizontalContentPadding}>
         <ListItemComponent
           title={I18n.t("profile.data.list.nameSurname")}
           subTitle={`${getValueFromNewProfilePot(
@@ -116,7 +117,7 @@ const NewProfileScreen = () => {
           description={I18n.t("profile.data.deletion.description")}
           rightElement={<RemoteSwitch value={isUserDataProcessingDeletePot} />}
         />
-      </NBList>
+      </ScrollView>
     </ScreenContent>
   );
 

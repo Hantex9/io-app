@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useNavigation } from "@react-navigation/core";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { View } from "react-native";
 import { IconProps } from "react-native-vector-icons/Icon";
 import { useDispatch } from "react-redux";
 import * as pot from "@pagopa/ts-commons/lib/pot";
+import { pipe } from "fp-ts/lib/function";
+import * as B from "fp-ts/boolean";
 
+import { isStrictNone } from "../../utils/pot";
 import { emptyContextualHelp } from "../../utils/emptyContextualHelp";
 import ScreenContent from "../../components/screens/ScreenContent";
 import I18n from "../../i18n";
@@ -45,6 +48,20 @@ const NewProfileScreen = () => {
     isUserDataProcessingDeleteSelector
   );
 
+  // Memoized value that in case the pot is strict none, it will cast in pot.some(false) in order to avoid the infinite loading into RemoteSwitch component
+  const isDeletionProfileRequested = useMemo(
+    () =>
+      pipe(
+        isUserDataProcessingDeletePot,
+        isStrictNone,
+        B.fold(
+          () => isUserDataProcessingDeletePot,
+          () => pot.some(false)
+        )
+      ),
+    [isUserDataProcessingDeletePot]
+  );
+
   useOnFirstRender(() => {
     loadProfile();
   });
@@ -54,10 +71,16 @@ const NewProfileScreen = () => {
    */
   const loadProfile = () => {
     dispatch(loadNewProfile.request());
+    loadUserDataProcessingDelete();
+  };
+
+  /**
+   * Function that start fetch the user data processing delete status
+   */
+  const loadUserDataProcessingDelete = () =>
     dispatch(
       loadUserDataProcessing.request(UserDataProcessingChoiceEnum.DELETE)
     );
-  };
 
   const handleSwitchValueChange = (value: boolean) => {
     if (value) {
@@ -92,7 +115,8 @@ const NewProfileScreen = () => {
           description={I18n.t("profile.data.deletion.description")}
           rightElement={
             <RemoteSwitch
-              value={isUserDataProcessingDeletePot}
+              value={isDeletionProfileRequested}
+              onRetry={loadUserDataProcessingDelete}
               onValueChange={handleSwitchValueChange}
             />
           }

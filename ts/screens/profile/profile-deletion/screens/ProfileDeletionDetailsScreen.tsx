@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { StackActions, useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch } from "react-redux";
+import { constUndefined } from "fp-ts/lib/function";
 import * as pot from "@pagopa/ts-commons/lib/pot";
 
 import I18n from "../../../../i18n";
@@ -107,7 +108,7 @@ const ProfileDeletionDetailsScreen = () => {
   const confirmButton = confirmButtonProps(
     confirmDeletion, // onPress
     I18n.t("global.buttons.confirm"), // title
-    undefined, // iconName
+    constUndefined(), // iconName
     "confimDeletionTestID", // testID
     isLoading // disabled
   );

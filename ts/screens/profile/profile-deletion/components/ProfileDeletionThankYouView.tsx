@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { constUndefined } from "fp-ts/lib/function";
 
 import { IOStyles } from "../../../../components/core/variables/IOStyles";
 import { InfoScreenComponent } from "../../../../components/infoScreen/InfoScreenComponent";
@@ -19,7 +20,7 @@ const ProfileDeletionThankYouView: FC<Props> = ({ onPressBack }) => {
   const cancelButton = cancelButtonProps(
     () => onPressBack?.(), // onPress
     I18n.t("global.buttons.close"), // title
-    undefined, // iconName
+    constUndefined(), // iconName
     "ThankYouPageDeletionCloseButton" // testID
   );
   return (

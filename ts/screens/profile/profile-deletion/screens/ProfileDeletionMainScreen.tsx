@@ -6,7 +6,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import I18n from "../../../../i18n";
 import { emptyContextualHelp } from "../../../../utils/emptyContextualHelp";
 import BaseScreenComponent from "../../../../components/screens/BaseScreenComponent";
-import { ProfileDeletionRoutes } from "../navigation/routes";
 import FooterWithButtons from "../../../../components/ui/FooterWithButtons";
 import {
   cancelButtonProps,
@@ -18,6 +17,7 @@ import { InfoBox } from "../../../../components/box/InfoBox";
 import { IOColors } from "../../../../components/core/variables/IOColors";
 import { Body } from "../../../../components/core/typography/Body";
 import { H4 } from "../../../../components/core/typography/H4";
+import { ProfileDeletionRoutes } from "../navigation/routes";
 
 const ProfileDeletionMainScreen = () => {
   const navigation = useNavigation();

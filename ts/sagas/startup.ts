@@ -318,7 +318,7 @@ export function* initializeApplicationSaga(): Generator<
   let maybeSessionInformation: ReturnType<typeof sessionInfoSelector> =
     yield* select(sessionInfoSelector);
   if (isSessionRefreshed || O.isNone(maybeSessionInformation)) {
-    // let's try to load the session information from the backend.F
+    // let's try to load the session information from the backend.
 
     maybeSessionInformation = yield* call(
       loadSessionInformationSaga,

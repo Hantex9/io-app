@@ -255,6 +255,19 @@ inbox:
   disableButton: Disabilita Inbox
   enableCallToActionDescription: Abilita l'inbox per visualizzare i messaggi
 profile:
+  delete:
+    title: Cancellazione profilo
+    details: 
+      title: Riepilogo dati
+      subtitle: Sei sicuro di voler eliminare il tuo profilo?
+    error:
+      description: Si è verificato un errore imprevisto durante la cancellazione del profilo. Ti invitiamo a riprovare più tardi.
+    thankYouPage:
+      title: Richiesta inviata correttamente
+      content: La tua richiesta di cancellazione profilo è stata inoltrata correttamente. Attendi la conferma di avvenuta eliminazione del profilo.
+    main:
+      title: Richiesta eliminazione profilo
+      description: "Procedendo con la richiesta di eliminazione del profilo, perderai l'accesso a tutti i servizi e le funzionalità di IO.\n\nSe vuoi continuare, conferma la tua richiesta e attendi la conferma di avvenuta eliminazione del profilo."
   fiscalCode:
     accessibility:
       unavailable: Non disponibile

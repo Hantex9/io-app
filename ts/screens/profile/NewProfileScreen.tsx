@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useNavigation } from "@react-navigation/core";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { View } from "react-native";
+import { ScrollView } from "react-native";
 import { IconProps } from "react-native-vector-icons/Icon";
 import { useDispatch } from "react-redux";
 import * as pot from "@pagopa/ts-commons/lib/pot";
@@ -108,7 +108,7 @@ const NewProfileScreen = () => {
 
   const ProfileContentView = () => (
     <ScreenContent iconFont={newProfileScreenIconProps} title={screenTitle}>
-      <View style={IOStyles.horizontalContentPadding}>
+      <ScrollView style={IOStyles.horizontalContentPadding}>
         <ProfileDetailsList profile={newProfilePot} />
         <PreferencesListItem
           title={I18n.t("profile.data.deletion.title")}
@@ -121,7 +121,7 @@ const NewProfileScreen = () => {
             />
           }
         />
-      </View>
+      </ScrollView>
     </ScreenContent>
   );
 

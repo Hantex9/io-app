@@ -255,6 +255,19 @@ inbox:
   disableButton: Disable Inbox
   enableCallToActionDescription: Enable the inbox to view messages
 profile:
+  delete:
+    title: Delete profile
+    details: 
+      title: Review profile data
+      subtitle: Are you sure you want to delete your profile?
+    error:
+      description: Something went wrong while deleting your profile. Please try again later.
+    thankYouPage:
+      title: Request sent successfully
+      content: Your profile deletion request has been forwarded correctly. Wait for the confirmation that the profile has been deleted.
+    main: 
+      title: Request delete profile
+      description: "Proceeding with the profile deletion request, you will lose access to all IO services and features.\n\nIf you want to continue, confirm your request and wait for the confirmation that the profile has been deleted."
   fiscalCode:
     accessibility:
       unavailable: Unavailable
